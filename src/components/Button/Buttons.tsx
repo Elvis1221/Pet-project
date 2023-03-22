@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ComponentProps } from 'react';
 
 import classnames from 'classnames';
 import css from './Button.module.css';
@@ -14,7 +14,7 @@ export enum ButtonsType {
   reset = 'reset',
 }
 
-interface IButtonProps extends React.ComponentProps<'button'> {
+interface IButtonProps extends ComponentProps<'button'> {
   theme?: ButtonsThemes;
   type?: ButtonsType;
 }

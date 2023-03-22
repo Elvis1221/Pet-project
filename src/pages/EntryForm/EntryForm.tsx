@@ -4,6 +4,7 @@ import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import Input, { InputTypes } from '../../components/Input/Input';
 import Button, { ButtonsThemes, ButtonsType } from '../../components/Button/Buttons';
 import { BUTTONS_TITLE, KEYS, FORM_LABELS, PLACE_HOLDER } from '../../constants';
+import Modal from '../../components/Modal/Modal';
 
 import css from './EntryForm.module.css';
 
@@ -25,6 +26,7 @@ interface IFormFieldsArr {
 }
 
 export const EntryForm: React.FC = () => {
+  const [isDisplayModal, setIsDisplayModal] = useState<boolean>(false);
   const [formData, setFormData] = useState<IEntryForm>({
     firstName: '',
     lastName: '',
@@ -76,6 +78,8 @@ export const EntryForm: React.FC = () => {
     },
   ];
 
+  const isCloseModal = () => setIsDisplayModal(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert(JSON.stringify(formData));
@@ -98,11 +102,27 @@ export const EntryForm: React.FC = () => {
             required
           />
         ))}
+        {isDisplayModal ? (
+          <Modal
+            display={isDisplayModal}
+            onClose={isCloseModal}
+            children={
+              <div className={css.ModalWrapper}>
+                <span>Your details have been sent to.</span>
+                <Button className={css.ModalButton} onClick={() => setIsDisplayModal(false)}>
+                  Close
+                </Button>
+              </div>
+            }
+          />
+        ) : null}
         <Button
           theme={ButtonsThemes.blue}
           type={ButtonsType.submit}
           children={BUTTONS_TITLE.SUBMIT}
           className={css.Button}
+          onClick={() => setIsDisplayModal(true)}
+          disabled={!formData.phoneNumber}
         />
       </form>
     </PageWrapper>

@@ -1,73 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-import './RegistrationForm.css';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
+
+import { EntreFormField, registrationFormFieldsArr } from './registrationFormFieldsArr';
+
+import css from './RegistrationForm.module.css';
+import Button, { ButtonsType } from '../../components/Button/Buttons';
+import { BUTTONS_TITLE } from '../../constants';
 
 type RegistrationFormValues = {
   email: string;
-  name: string;
-  phone: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
   password: string;
+  repeatPassword: string;
 };
 
 const RegistrationForm: React.FC = () => {
-  const [values, setValues] = useState<RegistrationFormValues>({
-    email: '',
-    name: '',
-    phone: '',
-    password: '',
-  });
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<RegistrationFormValues>();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(values);
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setValues({ ...values, [name]: value });
-  };
+  const onSubmit: SubmitHandler<RegistrationFormValues> = data => console.log(data);
 
   return (
     <PageWrapper>
-      <form className="registration-form" onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={values.email}
-          onChange={handleChange}
-          required
-        />
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={values.name}
-          onChange={handleChange}
-          required
-        />
-        <label htmlFor="phone">Phone:</label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          value={values.phone}
-          onChange={handleChange}
-          required
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={values.password}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Submit</button>
+      <form className={css.FormWrapper} onSubmit={handleSubmit(onSubmit)}>
+        {registrationFormFieldsArr.map((item: EntreFormField) => (
+          <div>
+            <div className={css.InputWrapper}>
+              <label>{item.label}</label>
+              <input
+                placeholder={item.placeholder}
+                className={css.Input}
+                {...register(item.name, { required: item.required })}
+              />
+            </div>
+            {errors[item.name] && <span>This field is required</span>}
+          </div>
+        ))}
+        <Button children={BUTTONS_TITLE.SUBMIT} type={ButtonsType.submit} className={css.Button} />
       </form>
     </PageWrapper>
   );

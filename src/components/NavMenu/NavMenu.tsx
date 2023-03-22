@@ -15,7 +15,6 @@ export const NavMenu: React.FC = () => {
     { link: '/entry-form', title: 'Entry Form' },
     { link: '/registration-form', title: 'Reg Form' },
     { link: '/', title: 'Home' },
-    { link: '', title: 'Modal' },
   ];
 
   return (

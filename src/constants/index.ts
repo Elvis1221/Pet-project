@@ -12,17 +12,22 @@ export const FORM_LABELS = {
   EMAIL: 'Email:',
   PHONE_NUMBER: 'Phone number:',
   DATA_ATTENDANCE: 'Data attendance:',
-  SUBMIT: 'Submit',
+  PASSWORD: 'Password',
+  REPEAT_PASSWORD: 'Repeat password',
 };
 
 export const BUTTONS_TITLE = {
   SUBMIT: 'Submit',
+  MODAL: 'Modal',
 };
 
 export const PLACE_HOLDER = {
   ENTER_NAME: 'Enter name',
+  ENTER_LAST_NAME: 'Enter last name',
   ENTER_SURNAME: 'Enter surname',
   ENTER_EMAIL: 'Enter email',
   ENTER_PHONE_NUMBER: 'Enter phone number',
   SELECT_DATE: 'Select date',
+  PASSWORD: 'Enter password',
+  REPEAT_PASSWORD: 'Repeat password',
 };
