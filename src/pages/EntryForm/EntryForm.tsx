@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import './EntryForm.css';
+
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
-import { ENTRY_FORM_KEYS, FORM_LABELS, FORM_TYPES } from '../../constants/entryForm.const';
+import Input, { InputTypes } from '../../components/Input/Input';
+import Button, { ButtonsThemes, ButtonsType } from '../../components/Button/Buttons';
+import { BUTTONS_TITLE, KEYS, FORM_LABELS, PLACE_HOLDER } from '../../constants';
+
+import css from './EntryForm.module.css';
 
 interface IEntryForm {
   firstName: string;
@@ -16,7 +20,8 @@ interface IFormFieldsArr {
   type: string;
   id: string;
   value: any;
-  onChange: any;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
 }
 
 export const EntryForm: React.FC = () => {
@@ -28,65 +33,77 @@ export const EntryForm: React.FC = () => {
     dateAttendance: new Date(),
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(formData);
-  };
-
-  const formFieldsArr: IFormFieldsArr[] = [
+  const entryFormFieldsArr: IFormFieldsArr[] = [
     {
       label: FORM_LABELS.FIRST_NAME,
-      type: FORM_TYPES.TEXT,
-      id: ENTRY_FORM_KEYS.FIRST_NAME,
+      type: InputTypes.text,
+      id: KEYS.FIRST_NAME,
       value: formData.firstName,
+      placeholder: PLACE_HOLDER.ENTER_NAME,
       onChange: (e: any) => setFormData({ ...formData, firstName: e.target.value }),
     },
     {
       label: FORM_LABELS.LAST_NAME,
-      type: FORM_TYPES.TEXT,
-      id: ENTRY_FORM_KEYS.LAST_NAME,
+      type: InputTypes.text,
+      id: KEYS.LAST_NAME,
       value: formData.lastName,
+      placeholder: PLACE_HOLDER.ENTER_SURNAME,
       onChange: (e: any) => setFormData({ ...formData, lastName: e.target.value }),
     },
     {
       label: FORM_LABELS.EMAIL,
-      type: FORM_TYPES.EMAIL,
-      id: ENTRY_FORM_KEYS.EMAIL,
+      type: InputTypes.email,
+      id: KEYS.EMAIL,
       value: formData.email,
+      placeholder: PLACE_HOLDER.ENTER_EMAIL,
       onChange: (e: any) => setFormData({ ...formData, email: e.target.value }),
     },
     {
       label: FORM_LABELS.PHONE_NUMBER,
-      type: FORM_TYPES.TEL,
-      id: ENTRY_FORM_KEYS.PHONE_NUMBER,
+      type: InputTypes.tel,
+      id: KEYS.PHONE_NUMBER,
       value: formData.phoneNumber,
+      placeholder: PLACE_HOLDER.ENTER_PHONE_NUMBER,
       onChange: (e: any) => setFormData({ ...formData, phoneNumber: e.target.value }),
     },
     {
       label: FORM_LABELS.DATA_ATTENDANCE,
-      type: FORM_TYPES.DATE,
-      id: ENTRY_FORM_KEYS.DATA_ATTENDANCE,
+      type: InputTypes.date,
+      id: KEYS.DATA_ATTENDANCE,
       value: formData.dateAttendance,
+      placeholder: PLACE_HOLDER.SELECT_DATE,
       onChange: (e: any) => setFormData({ ...formData, dateAttendance: e.target.value }),
     },
   ];
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(JSON.stringify(formData));
+  };
+
   return (
     <PageWrapper>
-      <form onSubmit={handleSubmit}>
-        {formFieldsArr.map(item => (
-          <div>
-            <label htmlFor={item.id}>{item.label}</label>
-            <input
-              type={item.type}
-              id={item.id}
-              value={item.value}
-              onChange={item.onChange}
-              required
-            />
-          </div>
+      <form onSubmit={handleSubmit} className={css.FormWrapper}>
+        {entryFormFieldsArr.map((item, key) => (
+          <Input
+            key={key}
+            label={item.label}
+            type={item.type}
+            htmlFor={item.id}
+            id={item.id}
+            value={item.value}
+            onChange={item.onChange}
+            className={css.Input}
+            placeholder={item.placeholder}
+            required
+          />
         ))}
-        <button type="submit">{FORM_LABELS.SUBMIT}</button>
+        <Button
+          theme={ButtonsThemes.blue}
+          type={ButtonsType.submit}
+          children={BUTTONS_TITLE.SUBMIT}
+          className={css.Button}
+        />
       </form>
     </PageWrapper>
   );
