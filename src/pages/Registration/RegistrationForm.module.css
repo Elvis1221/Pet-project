@@ -1,7 +1,7 @@
 .FormWrapper {
   display: flex;
   flex-direction: column;
-  width: 30vw;
+  width: 35vw;
   margin: 0 auto;
   align-items: center;
   box-shadow: 3px 3px 3px 3px var(--shadow-primary);
@@ -16,12 +16,12 @@
 
 .Input {
   padding-left: 1vw;
-  width: 15vw;
+  width: 20vw;
   height: 2.5vw;
-  margin: 0.1vw 0 0.4vw 0;
+  /*margin: 0.1vw 0 0.4vw 0;*/
   border: 1px solid #ccdbec;
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 4px;
   color: var(--gray);
   outline: none;
   font-family: var(--font-family-roboto);
@@ -46,4 +46,21 @@
 
 .Button {
   margin-top: 2vw;
+}
+
+.ErrorMessage {
+  color: var(--red);
+  font-size: var(--font-size-xxs);
+}
+
+.HiddenBlock {
+  font-size: var(--font-size-xxs);
+  visibility: hidden;
+}
+
+.InputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 0.1vw 0 0.4vw 0;
 }

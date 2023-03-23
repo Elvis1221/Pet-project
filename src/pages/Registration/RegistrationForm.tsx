@@ -32,16 +32,20 @@ const RegistrationForm: React.FC = () => {
     <PageWrapper>
       <form className={css.FormWrapper} onSubmit={handleSubmit(onSubmit)}>
         {registrationFormFieldsArr.map((item: EntreFormField) => (
-          <div>
-            <div className={css.InputWrapper}>
-              <label>{item.label}</label>
+          <div className={css.InputWrapper}>
+            <label>{item.label}</label>
+            <div className={css.InputContainer}>
               <input
                 placeholder={item.placeholder}
                 className={css.Input}
                 {...register(item.name, { required: item.required })}
               />
+              {errors[item.name] ? (
+                <span className={css.ErrorMessage}>This field is required</span>
+              ) : (
+                <span className={css.HiddenBlock}>This field is required</span>
+              )}
             </div>
-            {errors[item.name] && <span>This field is required</span>}
           </div>
         ))}
         <Button children={BUTTONS_TITLE.SUBMIT} type={ButtonsType.submit} className={css.Button} />
