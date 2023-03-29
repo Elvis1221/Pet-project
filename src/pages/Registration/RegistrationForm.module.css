@@ -4,7 +4,6 @@
   width: 35vw;
   margin: 0 auto;
   align-items: center;
-  box-shadow: 3px 3px 3px 3px var(--shadow-primary);
   padding: 1.5vw;
 }
 
@@ -63,4 +62,10 @@
   flex-direction: column;
   align-items: start;
   margin: 0.1vw 0 0.4vw 0;
+  height: 3.5vw;
+}
+
+.Label {
+  color: var(--blue);
+  font-size: 18px;
 }

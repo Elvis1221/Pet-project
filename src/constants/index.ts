@@ -3,7 +3,7 @@ export const KEYS = {
   LAST_NAME: 'lastName',
   EMAIL: 'email',
   PHONE_NUMBER: 'phoneNumber',
-  DATA_ATTENDANCE: 'dateAttendance',
+  DATA_ATTENDANCE: 'dateAttendance'
 };
 
 export const FORM_LABELS = {
@@ -13,12 +13,12 @@ export const FORM_LABELS = {
   PHONE_NUMBER: 'Phone number:',
   DATA_ATTENDANCE: 'Data attendance:',
   PASSWORD: 'Password',
-  REPEAT_PASSWORD: 'Repeat password',
+  REPEAT_PASSWORD: 'Repeat password'
 };
 
 export const BUTTONS_TITLE = {
   SUBMIT: 'Submit',
-  MODAL: 'Modal',
+  MODAL: 'Modal'
 };
 
 export const PLACE_HOLDER = {
@@ -29,5 +29,13 @@ export const PLACE_HOLDER = {
   ENTER_PHONE_NUMBER: 'Enter phone number',
   SELECT_DATE: 'Select date',
   PASSWORD: 'Enter password',
-  REPEAT_PASSWORD: 'Repeat password',
+  REPEAT_PASSWORD: 'Repeat password'
+};
+
+export const PAGE_TITLES = {
+  PORTFOLIO: 'Portfolio',
+  ENTRY_FORM: 'Entry Form',
+  ABOUT_ME: 'About Me',
+  REGISTRATION: 'Registration Form',
+  HOME: 'Home'
 };

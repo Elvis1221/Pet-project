@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import Input, { InputTypes } from '../../components/Input/Input';
 import Button, { ButtonsThemes, ButtonsType } from '../../components/Button/Buttons';
-import { BUTTONS_TITLE, KEYS, FORM_LABELS, PLACE_HOLDER } from '../../constants';
+import { BUTTONS_TITLE, KEYS, FORM_LABELS, PLACE_HOLDER, PAGE_TITLES } from '../../constants';
 import Modal from '../../components/Modal/Modal';
 
 import css from './EntryForm.module.css';
@@ -86,7 +86,7 @@ export const EntryForm: React.FC = () => {
   };
 
   return (
-    <PageWrapper>
+    <PageWrapper pageTitle={PAGE_TITLES.ENTRY_FORM}>
       <form onSubmit={handleSubmit} className={css.FormWrapper}>
         {entryFormFieldsArr.map((item, key) => (
           <Input

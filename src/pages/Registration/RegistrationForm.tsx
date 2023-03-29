@@ -7,7 +7,7 @@ import { EntreFormField, registrationFormFieldsArr } from './registrationFormFie
 
 import css from './RegistrationForm.module.css';
 import Button, { ButtonsType } from '../../components/Button/Buttons';
-import { BUTTONS_TITLE } from '../../constants';
+import { BUTTONS_TITLE, PAGE_TITLES } from '../../constants';
 
 type RegistrationFormValues = {
   email: string;
@@ -23,32 +23,30 @@ const RegistrationForm: React.FC = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors,isDirty, isValid },
   } = useForm<RegistrationFormValues>();
 
   const onSubmit: SubmitHandler<RegistrationFormValues> = data => console.log(data);
 
   return (
-    <PageWrapper>
+    <PageWrapper pageTitle={PAGE_TITLES.REGISTRATION}>
       <form className={css.FormWrapper} onSubmit={handleSubmit(onSubmit)}>
         {registrationFormFieldsArr.map((item: EntreFormField) => (
           <div className={css.InputWrapper}>
-            <label>{item.label}</label>
+            <label className={css.Label}>{item.label}</label>
             <div className={css.InputContainer}>
               <input
                 placeholder={item.placeholder}
                 className={css.Input}
                 {...register(item.name, { required: item.required })}
               />
-              {errors[item.name] ? (
+              {errors[item.name] && (
                 <span className={css.ErrorMessage}>This field is required</span>
-              ) : (
-                <span className={css.HiddenBlock}>This field is required</span>
               )}
             </div>
           </div>
         ))}
-        <Button children={BUTTONS_TITLE.SUBMIT} type={ButtonsType.submit} className={css.Button} />
+        <Button disabled={!isValid} children={BUTTONS_TITLE.SUBMIT} type={ButtonsType.submit} className={css.Button}  />
       </form>
     </PageWrapper>
   );

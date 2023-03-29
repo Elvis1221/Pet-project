@@ -6,6 +6,7 @@ import Portfolio from './pages/Portfolio/Portfolio';
 import RegistrationForm from './pages/Registration/RegistrationForm';
 import Home from './pages/Home/Home';
 import EntryForm from './pages/EntryForm/EntryForm';
+import SuccessRegistration from './pages/SuccesRegistration/SuccessRegistration';
 
 const routers = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const routers = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+  },
+  {
+    path: '/completed-registration',
+    element: <SuccessRegistration />,
   },
 ]);
 

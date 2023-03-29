@@ -11,3 +11,11 @@
   align-items: center;
   text-align: center;
 }
+
+
+.PageTitle {
+  margin-bottom: 2vw;
+  font-weight: bold;
+  color: var(--blue);
+
+}
